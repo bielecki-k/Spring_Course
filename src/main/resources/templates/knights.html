@@ -20,6 +20,7 @@
                 <td th:text="${knight.name}"></td>
                 <td th:text="${knight.age}"></td>
                 <td><a th:href="${'/knight?id='+knight.id}">Podglad</a></td>
+                <td><a th:href="${'/knight/delete/'+knight.id}">Usun</a></td>
             </tr>
         </tbody>
     </table>
