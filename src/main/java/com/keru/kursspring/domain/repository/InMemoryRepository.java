@@ -1,37 +1,49 @@
 package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.Knight;
-import org.springframework.stereotype.Repository;
+
 import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 //@Repository
 public class InMemoryRepository implements KnightRepository {
 
-    Map<String, Knight> knights = new HashMap<>();
+    Map<Integer, Knight> knightsMap = new HashMap<>();
 
     public InMemoryRepository(){ }
 
     @Override
     public void createKnight(String name, int age){
-        knights.put(name,new Knight(name,age));
+        Knight newKnight = new Knight(name,age);
+        newKnight.setId(getNewId());
+        knightsMap.put(newKnight.getId(), newKnight);
+    }
+
+    private int getNewId() {
+        if(knightsMap.isEmpty()) return 0;
+        else {
+             Integer integer = knightsMap.keySet().stream().max(Integer::max).get();
+            return integer+1;
+        }
     }
 
     @Override
     public Collection<Knight> getAllKnights(){
-        return knights.values();
+        return knightsMap.values();
     }
 
     @Override
-    public Knight getKnight(String name){
-        return knights.get(name);
+    public Optional<Knight> getKnight(String name){
+        Optional<Knight> knightByName = knightsMap.values().stream().filter(knigh -> knigh.getName().equals(name)).findAny();
+        return knightByName;
     }
 
     @Override
-    public void deleteKnight(String name) {
-        knights.remove(name);
+    public void deleteKnight(Integer id) {
+        knightsMap.remove(id);
     }
 
     @Override
@@ -44,13 +56,19 @@ public class InMemoryRepository implements KnightRepository {
 
     @Override
     public void createKnight(Knight knight) {
-        knights.put(knight.getName(),knight);
+        knight.setId(getNewId());
+        knightsMap.put(knight.getId(),knight);
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
+        return knightsMap.get(id);
     }
 
     @Override
     public String toString() {
         return "KnightRepository{" +
-                "knights=" + knights +
+                "knights=" + knightsMap +
                 '}';
     }
 }

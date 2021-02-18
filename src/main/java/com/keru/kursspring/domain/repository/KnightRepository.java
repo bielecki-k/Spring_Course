@@ -2,8 +2,8 @@ package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.Knight;
 
-import javax.annotation.PostConstruct;
 import java.util.Collection;
+import java.util.Optional;
 
 public interface KnightRepository {
 
@@ -11,11 +11,12 @@ public interface KnightRepository {
 
     Collection<Knight> getAllKnights();
 
-    Knight getKnight(String name);
+    Optional<Knight> getKnight(String name);
 
-    void deleteKnight(String name);
+    void deleteKnight(Integer id);
 
     void build();
 
     void createKnight(Knight knight);
+    Knight getKnightById(Integer id);
 }

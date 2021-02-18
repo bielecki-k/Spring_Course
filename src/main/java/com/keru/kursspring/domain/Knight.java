@@ -6,27 +6,18 @@ public class Knight {
 
     private String name ;
     private int age ;
+    private int id ;
     private Quest quest;
+    private int level;
+
 
     public Knight() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Knight(String name, int age) {
         this.name = name;
         this.age = age;
-    }
-
-    public void setQuest(Quest quest) {
-        System.out.println("wstrzykniecie questa przez metode");
-        this.quest = quest;
+        this.level = 1;
     }
 
     @Override
@@ -42,17 +33,35 @@ public class Knight {
         return Objects.hash(age);
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
     @Override
     public String toString(){
         return "Rycerz o imieniu "+name+" ("+age+") zadanie: "+quest;
     }
+
+    public void setQuest(Quest quest) {
+        System.out.println("wstrzykniecie questa przez metode");
+        this.quest = quest;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public int getAge() {
+        return age;
+    }
+
+    public int getId() { return id;    }
+    public void setId(int id) { this.id = id;    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLevel() { return level;    }
+
+    public void setLevel(int level) {  this.level = level;    }
 
 }

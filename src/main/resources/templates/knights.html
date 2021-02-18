@@ -13,12 +13,13 @@
 <div class="container">
     <table class="table">
         <thead>
-            <tr><td>Imie rycerza</td><td>Wiek</td></tr>
+            <tr><td>Imie rycerza</td><td>Poziom doswiadczenia</td><td></td></tr>
         </thead>
         <tbody th:each="knight : ${knights}">
             <tr>
                 <td th:text="${knight.name}"></td>
                 <td th:text="${knight.age}"></td>
+                <td><a th:href="${'/knight?id='+knight.id}">Podglad</a></td>
             </tr>
         </tbody>
     </table>

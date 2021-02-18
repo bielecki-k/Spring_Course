@@ -1,12 +1,10 @@
 package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.Knight;
-import jdk.jshell.spi.ExecutionControl;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.client.HttpServerErrorException;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
+import java.util.Optional;
 
 //@Repository
 public class DbKnightRepository implements KnightRepository{
@@ -24,13 +22,13 @@ public class DbKnightRepository implements KnightRepository{
     }
 
     @Override
-    public Knight getKnight(String name) {
+    public Optional<Knight> getKnight(String name) {
         System.out.println("uzywam bazy danych");
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void deleteKnight(String name) {
+    public void deleteKnight(Integer id) {
         System.out.println("uzywam bazy danych");
         throw new UnsupportedOperationException();
     }
@@ -45,6 +43,11 @@ public class DbKnightRepository implements KnightRepository{
     public void createKnight(Knight knight) {
         System.out.println("uzywam bazy danych");
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
+        return null;
     }
 
     @Override
