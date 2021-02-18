@@ -1,14 +1,13 @@
 package com.keru.kursspring.controllers;
 
 import com.keru.kursspring.domain.Knight;
-import com.keru.kursspring.domain.repository.KnightRepository;
 import com.keru.kursspring.services.KnightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,6 +27,12 @@ public class KnightController {
     public String createKnight(Model model) {
         model.addAttribute("knight",new Knight());
         return "knightform";
+    }
+
+    @RequestMapping(value="/knights",method = RequestMethod.POST)
+    public String saveKnights(Knight knight){
+        knightService.saveKnight(knight);
+        return "redirect:/knights";
     }
 
 }

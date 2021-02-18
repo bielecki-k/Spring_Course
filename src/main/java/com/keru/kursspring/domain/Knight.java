@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Knight {
 
-    private String name = "Lancelot";
-    private int age = 29;
+    private String name ;
+    private int age ;
     private Quest quest;
 
     public Knight() {

@@ -42,6 +42,12 @@ public class DbKnightRepository implements KnightRepository{
     }
 
     @Override
+    public void createKnight(Knight knight) {
+        System.out.println("uzywam bazy danych");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public String toString() {
         return "DbKnightRepository{}";
     }
