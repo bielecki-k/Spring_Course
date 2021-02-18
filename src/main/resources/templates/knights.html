@@ -15,12 +15,17 @@
     Posiadane zloto<span th:text="${playerinformation.gold}"></span>
     <table class="table">
         <thead>
-            <tr><td>Imie rycerza</td><td>Poziom doswiadczenia</td><td></td></tr>
+            <tr><td>Imie rycerza</td><td>Poziom doswiadczenia</td><td>Zadanie</td></tr></td></tr>
         </thead>
         <tbody th:each="knight : ${knights}">
             <tr>
                 <td th:text="${knight.name}"></td>
                 <td th:text="${knight.age}"></td>
+                <td>
+                <td>
+                <span th:if="${knight.quest==null}">Brak aktualnego zadania <a th:href="${'/assignQuest?knightId='+knight.id}">Przypisz zadanie</a></span>
+                    <span th:if="${knight.quest!=null}" th:text="${knight.quest.desc}"/>
+                </td>
                 <td><a th:href="${'/knight?id='+knight.id}">Podglad</a></td>
                 <td><a th:href="${'/knight/delete/'+knight.id}">Usun</a></td>
             </tr>

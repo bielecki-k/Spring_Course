@@ -28,19 +28,11 @@ public class Starter implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        System.out.println(knightRepository);
 
         questRepository.createRandomQuest();
-//        System.out.println(questRepository);
         questRepository.createRandomQuest();
-//        System.out.println(questRepository);
-//        questRepository.createRandomQuest();
-//        System.out.println(questRepository);
+        questService.assignRandomQuest("Percival");
 
-//        System.out.println(knightRepository);
-//
-//        questService.assignRandomQuest("Lancelot");
-//        questService.assignRandomQuest("Percival");
 
     }
 }

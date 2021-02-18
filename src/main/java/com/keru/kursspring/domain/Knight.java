@@ -1,10 +1,20 @@
 package com.keru.kursspring.domain;
 
+
+
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class Knight {
 
+    @NotNull
     private String name ;
+    @NotNull
+    @Min(7)
+    @Max(40)
     private int age ;
     private int id ;
     private Quest quest;
@@ -20,28 +30,12 @@ public class Knight {
         this.level = 1;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Knight knight = (Knight) o;
-        return age == knight.age;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(age);
-    }
-
-    @Override
-    public String toString(){
-        return "Rycerz o imieniu "+name+" ("+age+") zadanie: "+quest;
-    }
 
     public void setQuest(Quest quest) {
-        System.out.println("wstrzykniecie questa przez metode");
+        quest.setStarted(true);
         this.quest = quest;
     }
+    public Quest getQuest() { return quest; }
 
     public void setAge(int age) {
         this.age = age;
@@ -60,8 +54,26 @@ public class Knight {
         this.name = name;
     }
 
-    public int getLevel() { return level;    }
+    public int getLevel() { return level; }
+    public void setLevel(int level) { this.level = level; }
 
-    public void setLevel(int level) {  this.level = level;    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(age);
+    }
+
+    @Override
+    public String toString(){
+        return "Rycerz o imieniu "+name+" ("+age+") zadanie: "+quest;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Knight knight = (Knight) o;
+        return age == knight.age;
+    }
 
 }

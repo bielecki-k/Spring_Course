@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestService {
 
     @Autowired
-//    @Qualifier("inMemoryKnightRepo")
     KnightRepository knightRepository;
 
     @Autowired
@@ -26,12 +26,20 @@ public class QuestService {
     public void assignRandomQuest(String knightName){
         List<Quest> allQuests = questRepository.getQuestList();
         Quest randomQuest = allQuests.get(rand.nextInt(allQuests.size()));
-        knightRepository.getKnight(knightName).ifPresent(knight -> knight.setQuest(randomQuest));
+        knightRepository.getKnight(knightName)
+                .ifPresent(knight -> knight.setQuest(randomQuest));
         questRepository.removeQuest(randomQuest);
     }
 
 
+    public List<Quest> getAllNoitStartedQuests() {
+        return questRepository.getQuestList().stream()
+                .filter(quest -> !quest.isStarted())
+                .collect(Collectors.toList());
+    }
 
-
-
+    @Autowired
+    public void setQuestRepository(QuestRepository questRepository) {
+        this.questRepository = questRepository;
+    }
 }

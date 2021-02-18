@@ -1,6 +1,7 @@
 package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.Knight;
+import com.keru.kursspring.utils.Ids;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
@@ -18,16 +19,8 @@ public class InMemoryRepository implements KnightRepository {
     @Override
     public void createKnight(String name, int age){
         Knight newKnight = new Knight(name,age);
-        newKnight.setId(getNewId());
+        newKnight.setId(Ids.getNewId(knightsMap.keySet()));
         knightsMap.put(newKnight.getId(), newKnight);
-    }
-
-    private int getNewId() {
-        if(knightsMap.isEmpty()) return 0;
-        else {
-             Integer integer = knightsMap.keySet().stream().max(Integer::max).get();
-            return integer+1;
-        }
     }
 
     @Override
@@ -56,7 +49,7 @@ public class InMemoryRepository implements KnightRepository {
 
     @Override
     public void createKnight(Knight knight) {
-        knight.setId(getNewId());
+        knight.setId(Ids.getNewId(knightsMap.keySet()));
         knightsMap.put(knight.getId(),knight);
     }
 
@@ -71,4 +64,6 @@ public class InMemoryRepository implements KnightRepository {
                 "knights=" + knightsMap +
                 '}';
     }
+
+
 }
