@@ -35,7 +35,7 @@ public class QuestServiceTests {
         QuestService questService = new QuestService();
         questService.setQuestRepository(repositoryMock);
 
-        List<Quest> allNoitStartedQuests = questService.getAllNoitStartedQuests();
+        List<Quest> allNoitStartedQuests = questService.getAllNotStartedQuests();
         assertEquals("size of return quest",2,allNoitStartedQuests.size());
     }
 }

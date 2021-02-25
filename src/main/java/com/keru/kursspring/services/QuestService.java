@@ -32,7 +32,7 @@ public class QuestService {
     }
 
 
-    public List<Quest> getAllNoitStartedQuests() {
+    public List<Quest> getAllNotStartedQuests() {
         return questRepository.getQuestList().stream()
                 .filter(quest -> !quest.isStarted())
                 .collect(Collectors.toList());
@@ -41,5 +41,13 @@ public class QuestService {
     @Autowired
     public void setQuestRepository(QuestRepository questRepository) {
         this.questRepository = questRepository;
+    }
+
+    public void update(Quest quest) {
+        questRepository.update(quest);
+    }
+
+    public boolean isQuestCompleted(Quest quest) {
+        return quest.isCompleted();
     }
 }

@@ -40,6 +40,11 @@ public class InMemoryRepository implements KnightRepository {
     }
 
     @Override
+    public void updateKnight(int id, Knight knight){
+        knightsMap.put(id,knight);
+    }
+
+    @Override
     @PostConstruct
     public void build(){
         createKnight("Lancelot",29);
@@ -64,6 +69,7 @@ public class InMemoryRepository implements KnightRepository {
                 "knights=" + knightsMap +
                 '}';
     }
+
 
 
 }

@@ -29,4 +29,20 @@ public class KnightService {
     public void deleteKnight(Integer id) {
         knightRepository.deleteKnight(id);
     }
+
+    public void updateKnight(Knight knight) {
+        knightRepository.updateKnight(knight.getId(), knight);
+
+    }
+
+
+    public int collectRewards() {
+        int sum = knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isCompleted())
+                .mapToInt(knight -> knight.getQuest().getReward())
+                .sum();
+        knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isCompleted()).forEach( knight -> {
+            knight.setQuest(null);
+        });
+        return sum;
+    }
 }

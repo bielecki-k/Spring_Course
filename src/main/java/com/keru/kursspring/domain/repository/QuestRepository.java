@@ -1,31 +1,32 @@
 package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.Quest;
+import com.keru.kursspring.utils.Ids;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Repository
 public class QuestRepository {
 
-    List<Quest> questList = new ArrayList<>();
+    Map<Integer,Quest> quests = new HashMap<>();
 
-    final static Random rand = new Random();
+    Random rand = new Random();
 
     public void createQuest(String description){
-        questList.add(new Quest(description));
+        int newId = Ids.getNewId(quests.keySet());
+        Quest newQuest = new Quest(newId,description);
+        quests.put(newId,newQuest);
     }
 
     public List<Quest> getQuestList() {
-        return questList;
+        return new ArrayList<>(quests.values());
     }
 
     public void removeQuest(Quest quest){
-        questList.remove(quest);
+        quests.remove(quest.getId());
     }
 
     @Scheduled(fixedDelayString = "${questCreationDelay}")
@@ -42,5 +43,16 @@ public class QuestRepository {
     }
 
     @Override
-    public String toString() { return "QuestRepository{" + "questList=" + questList + '}'; }
+    public String toString() { return "QuestRepository{" + "quests=" + quests + '}'; }
+
+    public void update(Quest quest) {
+        quests.put(quest.getId(),quest);
+    }
+
+    public Quest getQuests(Integer id) {
+        return quests.get(id);
+//        return quests;
+    }
+
+//    public void setQuests(Map<Integer, Quest> quests) { this.quests = quests; }
 }

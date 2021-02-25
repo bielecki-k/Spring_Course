@@ -6,15 +6,15 @@ package com.keru.kursspring.domain;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class Knight {
 
     @NotNull
+    @Size(min=2, max=40,message = "Imie rycerza musi miec miedzy 2, a 40 znakow")
     private String name ;
     @NotNull
-    @Min(7)
-    @Max(40)
     private int age ;
     private int id ;
     private Quest quest;
@@ -22,6 +22,7 @@ public class Knight {
 
 
     public Knight() {
+        this.level = 1;
     }
 
     public Knight(String name, int age) {
