@@ -40,8 +40,6 @@ public class QuestConroller {
     public String assignQuest(Knight knight, BindingResult result) {
         System.out.println(result);
         knightService.updateKnight(knight);
-//        Quest quest = knight.getQuest();
-//        questService.update(quest);
         return "redirect:/knights";
     }
 
@@ -49,7 +47,10 @@ public class QuestConroller {
     public String checkQuests() {
 
         List<Knight> allKnights = knightService.getAllKnights();
-        allKnights.forEach(knight -> knight.getQuest().isCompleted());
+        allKnights.forEach(knight -> {
+            if(knight.getQuest() != null)
+                knight.getQuest().isCompleted();
+        });
 
         int currentGold = playerInformation.getGold();
         playerInformation.setGold(currentGold + knightService.collectRewards());

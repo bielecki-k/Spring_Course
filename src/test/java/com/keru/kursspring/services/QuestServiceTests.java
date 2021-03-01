@@ -6,16 +6,23 @@ import com.keru.kursspring.domain.repository.QuestRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
+//import org.junit.jupiter.api.Assertions;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-
 import static org.junit.Assert.assertEquals;
+
+import static org.mockito.Mockito.when;
 
 public class QuestServiceTests {
 
     @Mock
-    QuestRepository repositoryMock;
+    private QuestRepository repositoryMock;
+
+    @Test
+    public void emptyTest() {
+    }
 
     @Test
     public void returnsNotStartedTests(){
@@ -30,7 +37,7 @@ public class QuestServiceTests {
         questsList.add(q2);
         questsList.add(q3);
 
-        Mockito.when(repositoryMock.getQuestList()).thenReturn(questsList);
+        when(repositoryMock.getQuestList()).thenReturn(questsList);
 
         QuestService questService = new QuestService();
         questService.setQuestRepository(repositoryMock);
