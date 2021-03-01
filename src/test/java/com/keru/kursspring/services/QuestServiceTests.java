@@ -5,11 +5,7 @@ import com.keru.kursspring.domain.repository.QuestRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
-//import org.junit.jupiter.api.Assertions;
 import org.mockito.Mock;
 import static org.junit.Assert.assertEquals;
 

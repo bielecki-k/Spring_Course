@@ -3,20 +3,23 @@ package com.keru.kursspring;
 import com.keru.kursspring.domain.repository.InMemoryRepository;
 import com.keru.kursspring.domain.Knight;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
-class KursspringApplicationTests {
+public class KursspringApplicationTests {
+
+//	@Autowired
+//	Knight knight;
 
 	@Autowired
-	Knight knight;
-
-	@Autowired
-	InMemoryRepository castle;
+	InMemoryRepository inMemoryRepository;
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 	@Test
