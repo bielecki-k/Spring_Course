@@ -29,3 +29,8 @@ Project exists to get familiar with Git platform.
 [comment]: <> (## License)
 
 [comment]: <> (A short snippet describing the license &#40;MIT, Apache, etc.&#41;)
+
+## H2 Database
+
+Web Browser: ```localhost:8080/h2-console/```
+Url: ```jdbc:h2:mem:testdb```

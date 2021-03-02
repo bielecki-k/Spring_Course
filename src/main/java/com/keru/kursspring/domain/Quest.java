@@ -1,18 +1,26 @@
 package com.keru.kursspring.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
 public class Quest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String desc;
     private int reward = 100;
     private int lenght = 30000;
     protected int lenghtInSeconds = 10;
     private boolean started = false;
     private boolean completed = false;
-    private int id;
     protected LocalDateTime startDate;
 
+    public Quest() {}
 
     public Quest(int id, String description) {
         this.id = id;
