@@ -3,34 +3,43 @@ package com.keru.kursspring.domain.repository;
 import com.keru.kursspring.domain.Knight;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
 //@Repository
 public class DbKnightRepository implements KnightRepository{
-    @Override
-    public void createKnight(String name, int age) {
 
-        System.out.println("uzywam bazy danych");
-        throw new UnsupportedOperationException();
+    @PersistenceContext
+    private EntityManager em;
+
+
+    @Override
+    @Transactional
+    public void createKnight(String name, int age) {
+        Knight knight = new Knight(name,age);
+        em.persist(knight);
     }
 
     @Override
     public Collection<Knight> getAllKnights() {
-        System.out.println("uzywam bazy danych");
-        throw new UnsupportedOperationException();
+        return em.createQuery("from Knight",Knight.class).getResultList();
     }
 
     @Override
     public Optional<Knight> getKnight(String name) {
-        System.out.println("uzywam bazy danych");
-        throw new UnsupportedOperationException();
+        Knight knightByName = em.createQuery("from Knight k where k.name=:name",Knight.class)
+                .setParameter("name",name)
+                .getSingleResult();
+                return Optional.ofNullable(knightByName);
     }
 
     @Override
+    @Transactional
     public void deleteKnight(Integer id) {
-        System.out.println("uzywam bazy danych");
-        throw new UnsupportedOperationException();
+        em.remove(id);
     }
 
     @Override
@@ -40,18 +49,24 @@ public class DbKnightRepository implements KnightRepository{
     }
 
     @Override
+    @Transactional
     public void createKnight(Knight knight) {
-        System.out.println("uzywam bazy danych");
-        throw new UnsupportedOperationException();
+        em.persist(knight);
     }
 
     @Override
     public Knight getKnightById(Integer id) {
-        return null;
+        return em.find(Knight.class,id);
     }
 
     @Override
     public String toString() {
         return "DbKnightRepository{}";
+    }
+
+    @Override
+    @Transactional
+    public void updateKnight(int id, Knight knight){
+        em.merge(knight);
     }
 }

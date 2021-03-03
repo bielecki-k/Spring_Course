@@ -19,8 +19,7 @@ public class Quest {
 
     public Quest() {}
 
-    public Quest(int id, String description) {
-        this.id = id;
+    public Quest(String description) {
         this.desc = description;
     }
 

@@ -1,35 +1,37 @@
 package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.Quest;
-import com.keru.kursspring.utils.Ids;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Repository
 public class QuestRepository {
 
-    Map<Integer,Quest> quests = new HashMap<>();
-
     Random rand = new Random();
+    @PersistenceContext
+    private EntityManager em;
 
+    @Transactional
     public void createQuest(String description){
-        int newId = Ids.getNewId(quests.keySet());
-        Quest newQuest = new Quest(newId,description);
-        quests.put(newId,newQuest);
+        Quest newQuest = new Quest(description);
+        em.persist(newQuest);
     }
 
-    public List<Quest> getQuestList() {
-        return new ArrayList<>(quests.values());
+    public List<Quest> getAll() {
+        return em.createQuery("from Quest",Quest.class).getResultList();
     }
 
+    @Transactional
     public void removeQuest(Quest quest){
-        quests.remove(quest.getId());
+        em.remove(quest);
     }
 
     @Scheduled(fixedDelayString = "${questCreationDelay}")
+    @Transactional
     public void createRandomQuest(){
         List<String> descriptions = new ArrayList<>();
 
@@ -42,17 +44,13 @@ public class QuestRepository {
         createQuest(description);
     }
 
-    @Override
-    public String toString() { return "QuestRepository{" + "quests=" + quests + '}'; }
-
+    @Transactional
     public void update(Quest quest) {
-        quests.put(quest.getId(),quest);
+        em.merge(quest);
     }
 
     public Quest getQuests(Integer id) {
-        return quests.get(id);
-//        return quests;
+        return em.find(Quest.class,id);
     }
 
-//    public void setQuests(Map<Integer, Quest> quests) { this.quests = quests; }
 }
