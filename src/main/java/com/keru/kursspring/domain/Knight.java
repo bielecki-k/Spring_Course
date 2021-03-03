@@ -3,20 +3,23 @@ package com.keru.kursspring.domain;
 
 
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Entity
 public class Knight {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     @NotNull
     @Size(min=2, max=40,message = "Imie rycerza musi miec miedzy 2, a 40 znakow")
     private String name ;
     @NotNull
     private int age ;
-    private int id ;
+    @OneToOne
     private Quest quest;
     private int level;
 
