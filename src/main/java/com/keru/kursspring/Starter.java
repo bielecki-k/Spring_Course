@@ -8,13 +8,13 @@ import com.keru.kursspring.domain.repository.QuestRepository;
 import com.keru.kursspring.services.QuestService;
 import com.keru.kursspring.utils.Role;
 import com.keru.kursspring.utils.RoleRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 
 @Component
 @Scope("singleton")

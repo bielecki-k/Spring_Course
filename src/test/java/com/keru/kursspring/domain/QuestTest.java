@@ -8,7 +8,7 @@ public class QuestTest {
 
     @Test
     public void settingStartedFlagToFalseShouldSetStartDate() {
-        Quest quest = new Quest(1, "Tetowe zadanie");
+        Quest quest = new Quest( "Testowe zadanie");
 
         quest.setStarted(true);
 
@@ -17,7 +17,7 @@ public class QuestTest {
 
     @Test
     public void questShouldBeCompleted() {
-        Quest quest = new Quest(1, "Tetowe zadanie");
+        Quest quest = new Quest( "Testowe zadanie");
         quest.setStarted(true);
         quest.lenghtInSeconds = -60;
         assertTrue(quest.isCompleted());
@@ -27,7 +27,7 @@ public class QuestTest {
 
     @Test
     public void questShouldNotBeCompleted() {
-        Quest quest = new Quest(1, "Tetowe zadanie");
+        Quest quest = new Quest( "Testowe zadanie");
         quest.setStarted(true);
         quest.lenghtInSeconds = 20000;
         assertFalse(quest.isCompleted());

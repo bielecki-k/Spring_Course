@@ -1,11 +1,10 @@
 package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.Knight;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -43,7 +42,6 @@ public class DbKnightRepository implements KnightRepository{
     }
 
     @Override
-    @PostConstruct
     public void build() {
 
     }

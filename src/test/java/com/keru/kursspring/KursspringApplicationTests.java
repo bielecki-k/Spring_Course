@@ -1,31 +1,27 @@
 package com.keru.kursspring;
 
 import com.keru.kursspring.domain.repository.InMemoryRepository;
-import com.keru.kursspring.domain.Knight;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)   // zamiast @RunWith(SpringRunner.class)
 @SpringBootTest
-public class KursspringApplicationTests {
-
-//	@Autowired
-//	Knight knight;
+class KursspringApplicationTests {
 
 	@Autowired
 	InMemoryRepository inMemoryRepository;
 
 	@Test
-	public void contextLoads() {
+	void contextLoads() {
+		// test „czy wstaje kontekst”
 	}
 
 	@Test
-	public void testCastle(){
-
-
+	void testCastle() {
+		// TODO: asercje - np.
+		// assertNotNull(inMemoryRepository);
 	}
-
 }

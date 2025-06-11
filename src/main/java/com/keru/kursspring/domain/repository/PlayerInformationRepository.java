@@ -1,11 +1,11 @@
 package com.keru.kursspring.domain.repository;
 
 import com.keru.kursspring.domain.PlayerInformation;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @Repository
 public class PlayerInformationRepository {

@@ -3,7 +3,6 @@ package com.keru.kursspring.domain.repository;
 import com.keru.kursspring.domain.Knight;
 import com.keru.kursspring.utils.Ids;
 
-import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +44,6 @@ public class InMemoryRepository implements KnightRepository {
     }
 
     @Override
-    @PostConstruct
     public void build(){
         createKnight("Lancelot",29);
         createKnight("Percival",25);
